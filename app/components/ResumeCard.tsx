@@ -1,6 +1,7 @@
-import {Link} from "react-router";
-import ScoreCircle from "~/components/ScoreCircle";
 import {useEffect, useState} from "react";
+import {Link} from "react-router";
+
+import ScoreCircle from "~/components/ScoreCircle";
 import {usePuterStore} from "~/lib/puter";
 
 const ResumeCard = ({ resume: { id, companyName, jobTitle, feedback, imagePath } }: { resume: Resume }) => {
@@ -11,7 +12,7 @@ const ResumeCard = ({ resume: { id, companyName, jobTitle, feedback, imagePath }
         const loadResume = async () => {
             const blob = await fs.read(imagePath);
             if(!blob) return;
-            let url = URL.createObjectURL(blob);
+            const url = URL.createObjectURL(blob);
             setResumeUrl(url);
         }
 
