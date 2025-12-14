@@ -74,7 +74,10 @@ const Upload = () => {
                 return;
             }
 
-            const { feedback } = await analyzeResponse.json();
+             
+            const analyzeData = await analyzeResponse.json() as { feedback: ResumeFeedback };
+             
+            const { feedback } = analyzeData;
 
             // Save to database
             setStatusText('Saving results...');
@@ -87,6 +90,7 @@ const Upload = () => {
                     jobDescription,
                     resumeUrl,
                     imageUrl,
+                     
                     feedback,
                 }),
             });
@@ -96,10 +100,11 @@ const Upload = () => {
                 return;
             }
 
-            const { resume } = await saveResponse.json();
+            const saveData = await saveResponse.json() as { resume: { id: string } };
+            const { resume } = saveData;
 
             setStatusText('Analysis complete, redirecting...');
-            navigate(`/resume/${resume.id}`);
+            void navigate(`/resume/${resume.id}`);
         } catch (error) {
             console.error('Error during analysis:', error);
             setStatusText('Error: Something went wrong');
@@ -120,7 +125,7 @@ const Upload = () => {
 
         if (!file) return;
 
-        handleAnalyze({ companyName, jobTitle, jobDescription, file });
+        void handleAnalyze({ companyName, jobTitle, jobDescription, file });
     }
 
     return (

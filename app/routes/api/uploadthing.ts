@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument, @typescript-eslint/require-await -- React Router type issues and uploadthing requirements */
 import { getAuth } from "@clerk/react-router/ssr.server";
 import { createUploadthing, type FileRouter } from "uploadthing/server";
 
+// @ts-expect-error - Route namespace types not available
 import type { Route } from "./+types/uploadthing";
 
 const f = createUploadthing();

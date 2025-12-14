@@ -1,11 +1,17 @@
 interface Resume {
     id: string;
-    companyName?: string;
-    jobTitle?: string;
-    imagePath: string;
-    resumePath: string;
-    feedback: Feedback;
+    userId: string;
+    companyName: string;
+    jobTitle: string;
+    jobDescription: string;
+    resumeUrl: string;
+    imageUrl: string;
+    feedback: Feedback | null;
+    createdAt: Date;
+    updatedAt: Date;
 }
+
+type ResumeFeedback = Feedback;
 
 interface Feedback {
     overallScore: number;

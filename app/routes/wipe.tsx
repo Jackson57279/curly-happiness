@@ -1,34 +1,34 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 import { usePuterStore } from "~/lib/puter";
 
 const WipeApp = () => {
-    const { auth, isLoading, error, clearError, fs, ai, kv } = usePuterStore();
+    const { auth, isLoading, error, fs, kv } = usePuterStore();
     const navigate = useNavigate();
     const [files, setFiles] = useState<FSItem[]>([]);
 
-    const loadFiles = async () => {
+    const loadFiles = useCallback(async () => {
         const files = (await fs.readDir("./"))!;
         setFiles(files);
-    };
+    }, [fs]);
 
     useEffect(() => {
-        loadFiles();
-    }, []);
+        void loadFiles();
+    }, [loadFiles]);
 
     useEffect(() => {
         if (!isLoading && !auth.isAuthenticated) {
-            navigate("/auth?next=/wipe");
+            void navigate("/auth?next=/wipe");
         }
-    }, [isLoading]);
+    }, [isLoading, auth.isAuthenticated, navigate]);
 
     const handleDelete = async () => {
-        files.forEach(async (file) => {
+        await Promise.all(files.map(async (file) => {
             await fs.delete(file.path);
-        });
+        }));
         await kv.flush();
-        loadFiles();
+        void loadFiles();
     };
 
     if (isLoading) {
@@ -53,7 +53,7 @@ const WipeApp = () => {
             <div>
                 <button
                     className="bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer"
-                    onClick={() => handleDelete()}
+                    onClick={() => void handleDelete()}
                 >
                     Wipe App Data
                 </button>

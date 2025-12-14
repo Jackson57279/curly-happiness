@@ -7,6 +7,13 @@ export const meta = () => ([
     { name: 'description', content: 'Log into your account' },
 ])
 
+const RedirectEffect = ({ next, navigate }: { next: string; navigate: (path: string) => Promise<void> | void }) => {
+    useEffect(() => {
+        void navigate(next);
+    }, [next, navigate]);
+    return null;
+};
+
 const Auth = () => {
     const location = useLocation();
     const next = location.search.split('next=')[1] || '/';
@@ -37,12 +44,7 @@ const Auth = () => {
                 </div>
             </SignedOut>
             <SignedIn>
-                {(() => {
-                    useEffect(() => {
-                        navigate(next);
-                    }, []);
-                    return null;
-                })()}
+                <RedirectEffect next={next} navigate={navigate} />
             </SignedIn>
         </main>
     )

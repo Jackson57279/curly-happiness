@@ -27,8 +27,8 @@ export async function analyzeResume({
             },
             {
               type: 'file',
+              mediaType: 'application/pdf',
               data: resumeUrl,
-              mimeType: 'application/pdf',
             },
           ],
         },

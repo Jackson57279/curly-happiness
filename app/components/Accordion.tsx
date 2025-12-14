@@ -69,7 +69,7 @@ interface AccordionItemProps {
 }
 
 export const AccordionItem: React.FC<AccordionItemProps> = ({
-                                                                id,
+                                                                id: _id,
                                                                 children,
                                                                 className = "",
                                                             }) => {
@@ -132,10 +132,10 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
       `}
         >
             <div className="flex items-center space-x-3">
-                {iconPosition === "left" && (icon || defaultIcon)}
+                {iconPosition === "left" && (icon ?? defaultIcon)}
                 <div className="flex-1">{children}</div>
             </div>
-            {iconPosition === "right" && (icon || defaultIcon)}
+            {iconPosition === "right" && (icon ?? defaultIcon)}
         </button>
     );
 };

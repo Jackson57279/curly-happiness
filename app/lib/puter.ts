@@ -245,7 +245,7 @@ export const usePuterStore = create<PuterStore>((set, get) => {
         const puter = getPuter();
         if (puter) {
             set({ puterReady: true });
-            checkAuthStatus();
+            void checkAuthStatus();
             return;
         }
 
@@ -253,7 +253,7 @@ export const usePuterStore = create<PuterStore>((set, get) => {
             if (getPuter()) {
                 clearInterval(interval);
                 set({ puterReady: true });
-                checkAuthStatus();
+                void checkAuthStatus();
             }
         }, 100);
 
@@ -396,9 +396,7 @@ export const usePuterStore = create<PuterStore>((set, get) => {
             setError("Puter.js not available");
             return;
         }
-        if (returnValues === undefined) {
-            returnValues = false;
-        }
+        returnValues ??= false;
         return puter.kv.list(pattern, returnValues);
     };
 

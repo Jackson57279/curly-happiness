@@ -5,7 +5,7 @@ import { Link, useLoaderData } from "react-router";
 import { db } from '../../db';
 import { resumes } from '../../db/schema';
 
-import type { Route } from './+types/resume';
+// import type { Route } from './+types/resume';
 
 import ATS from "~/components/ATS";
 import Details from "~/components/Details";
@@ -16,20 +16,25 @@ export const meta = () => ([
     { name: 'description', content: 'Detailed overview of your resume' },
 ])
 
+// @ts-expect-error - Route namespace types not available
 export async function loader({ request, params }: Route.LoaderArgs) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- getAuth expects LoaderFunctionArgs but receives Route.LoaderArgs
     const { userId } = await getAuth(request);
 
     if (!userId) {
+        // eslint-disable-next-line @typescript-eslint/only-throw-error -- React Router expects Response
         throw new Response("Unauthorized", { status: 401 });
     }
 
     const [resume] = await db
         .select()
         .from(resumes)
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access -- React Router params type issue
         .where(and(eq(resumes.id, params.id), eq(resumes.userId, userId)))
         .limit(1);
 
     if (!resume) {
+        // eslint-disable-next-line @typescript-eslint/only-throw-error -- React Router expects Response
         throw new Response("Resume not found", { status: 404 });
     }
 

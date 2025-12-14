@@ -1,10 +1,14 @@
 export const resumes: Resume[] = [
     {
         id: "1",
+        userId: "user1",
         companyName: "Google",
         jobTitle: "Frontend Developer",
-        imagePath: "/images/resume_01.png",
-        resumePath: "/resumes/resume-1.pdf",
+        jobDescription: "",
+        imageUrl: "/images/resume_01.png",
+        resumeUrl: "/resumes/resume-1.pdf",
+        createdAt: new Date(),
+        updatedAt: new Date(),
         feedback: {
             overallScore: 85,
             ATS: {
@@ -31,10 +35,14 @@ export const resumes: Resume[] = [
     },
     {
         id: "2",
+        userId: "user1",
         companyName: "Microsoft",
         jobTitle: "Cloud Engineer",
-        imagePath: "/images/resume_02.png",
-        resumePath: "/resumes/resume-2.pdf",
+        jobDescription: "",
+        imageUrl: "/images/resume_02.png",
+        resumeUrl: "/resumes/resume-2.pdf",
+        createdAt: new Date(),
+        updatedAt: new Date(),
         feedback: {
             overallScore: 55,
             ATS: {
@@ -61,10 +69,14 @@ export const resumes: Resume[] = [
     },
     {
         id: "3",
+        userId: "user1",
         companyName: "Apple",
         jobTitle: "iOS Developer",
-        imagePath: "/images/resume_03.png",
-        resumePath: "/resumes/resume-3.pdf",
+        jobDescription: "",
+        imageUrl: "/images/resume_03.png",
+        resumeUrl: "/resumes/resume-3.pdf",
+        createdAt: new Date(),
+        updatedAt: new Date(),
         feedback: {
             overallScore: 75,
             ATS: {
@@ -91,10 +103,14 @@ export const resumes: Resume[] = [
     },
     {
         id: "4",
+        userId: "user1",
         companyName: "Google",
         jobTitle: "Frontend Developer",
-        imagePath: "/images/resume_01.png",
-        resumePath: "/resumes/resume-1.pdf",
+        jobDescription: "",
+        imageUrl: "/images/resume_01.png",
+        resumeUrl: "/resumes/resume-1.pdf",
+        createdAt: new Date(),
+        updatedAt: new Date(),
         feedback: {
             overallScore: 85,
             ATS: {
@@ -121,10 +137,14 @@ export const resumes: Resume[] = [
     },
     {
         id: "5",
+        userId: "user1",
         companyName: "Microsoft",
         jobTitle: "Cloud Engineer",
-        imagePath: "/images/resume_02.png",
-        resumePath: "/resumes/resume-2.pdf",
+        jobDescription: "",
+        imageUrl: "/images/resume_02.png",
+        resumeUrl: "/resumes/resume-2.pdf",
+        createdAt: new Date(),
+        updatedAt: new Date(),
         feedback: {
             overallScore: 55,
             ATS: {
@@ -151,10 +171,14 @@ export const resumes: Resume[] = [
     },
     {
         id: "6",
+        userId: "user1",
         companyName: "Apple",
         jobTitle: "iOS Developer",
-        imagePath: "/images/resume_03.png",
-        resumePath: "/resumes/resume-3.pdf",
+        jobDescription: "",
+        imageUrl: "/images/resume_03.png",
+        resumeUrl: "/resumes/resume-3.pdf",
+        createdAt: new Date(),
+        updatedAt: new Date(),
         feedback: {
             overallScore: 75,
             ATS: {
